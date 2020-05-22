@@ -97,6 +97,11 @@ filesets:
       - fpga/clk_gen_mcmm.vhd : {file_type : vhdlSource-2008}
       - fpga/top-generic.vhdl : {file_type : vhdlSource-2008}
 
+  xilinx_embedded:
+    files:
+      - fpga/clk_gen_bypass.vhd : {file_type : vhdlSource-2008}
+      - fpga/top-generic.vhdl : {file_type : vhdlSource-2008}
+
   litedram:
       depend : [":microwatt:litedram"]
 
@@ -243,6 +248,20 @@ targets:
       - has_uart1
     tools:
       vivado: {part : xc7a35tcpg236-1}
+    toplevel : toplevel
+
+  xilinx_embedded:
+    default_tool: vivado
+    filesets: [core, xilinx_embedded, soc, fpga, debug_xilinx, uart16550, xilinx_specific]
+    parameters :
+      - memory_size
+      - ram_init_file
+      - clk_input
+      - clk_frequency
+      - disable_flatten_core
+      - uart_is_16550
+    tools:
+      vivado:
     toplevel : toplevel
 
   synth:
