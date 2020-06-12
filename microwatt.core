@@ -100,7 +100,7 @@ filesets:
   xilinx_embedded:
     files:
       - fpga/clk_gen_bypass.vhd : {file_type : vhdlSource-2008}
-      - fpga/top-generic.vhdl : {file_type : vhdlSource-2008}
+      - fpga/top-generic.vhdl : {file_type : vhdlSource}
 
   litedram:
       depend : [":microwatt:litedram"]
