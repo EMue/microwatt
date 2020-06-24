@@ -248,7 +248,12 @@ static int jtag_init(const char *target)
 		fprintf(stderr, "JTAG failed to add part !\n");
 		return -1;
 	}
-	if (jc->parts == NULL || jc->parts->len == 0) {
+	rc = urj_tap_manual_add(jc, 4);
+	if (rc < 0) {
+		fprintf(stderr, "JTAG failed to add part !\n");
+		return -1;
+	}
+	if (jc->parts == NULL || jc->parts->len != 2) {
 		fprintf(stderr, "JTAG Something's wrong after adding part !\n");
 		return -1;
 	}
